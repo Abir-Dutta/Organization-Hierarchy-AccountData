@@ -67,6 +67,8 @@ namespace FetchData
                     DirectorySearcher searcher = new DirectorySearcher();
                     SearchResultCollection results = null;
 
+                    //Other filters can be applied cn,displayname, etc.
+                    //Based on the LDAP properties need to change the below Properties to Load. 
                     searcher.Filter = "(&(objectClass=user)(objectCategory=person)(cn=" + userName + "))";
                     //Common Name
                     searcher.PropertiesToLoad.Add("cn");  
@@ -155,8 +157,9 @@ namespace FetchData
         {
             CreateFile();
 
-            FindUser("lastname, firstname @ location", "managerlastname, managerfirstname @ location");
+            //Pass filter values based on the filter type. cn,displayname, etc.
             //FindUser("Dutta, Abir @ Contractor", "managerlastname, managerfirstname @ India");
+            FindUser("lastname, firstname @ location", "managerlastname, managerfirstname @ location");
         }
 
     }
